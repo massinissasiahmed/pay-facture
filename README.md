@@ -1,16 +1,38 @@
-# pay_facture
 
-PayFacture is a mobile app designed for secure and efficient bill payments. Users sign up with document and facial verification, manage client info, pay bills, and handle credit by scanning deposit slips for automatic verification. Features include transaction history, notifications, and robust security measures.
+![reset-pass-email-verify-2](https://github.com/Snehasis4321/email_google_auth_flutter_appwrite/assets/96995340/08a37220-9e20-4f1b-b9eb-bd562dde216e)
 
-## Getting Started
+# Authentication in Appwrite
 
-This project is a starting point for a Flutter application.
+This repository contains all the code for the flutter app that uses the Authentication Methods :
+- Email & Password Login
+- Google Auth (Oauth2)
 
-A few resources to get you started if this is your first Flutter project:
+## 📺 [Watch Full Tutorial here](https://youtu.be/MCKGFqcY-mU)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📝 For Verify Email and Reset Password
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+You will be needing a backend for this, i have not explained much about the backend node.js in the tutorial but you can use my backend code please [refer here](https://github.com/Snehasis4321/reset_and_verifyemail_node_appwrite).
+
+
+## 💻 Tech Stack
+**App** : Flutter
+
+**Database**: Appwrite
+
+
+
+
+## 📔 Topics Covered 
+- Create New Account
+- Login to existing Account
+- Check Sessions
+- Logout the user
+- Verify Email
+- Reset Password
+- Google Auth
+
+
+## 👨‍💻 Authors 
+- [@Snehasis4321](https://www.github.com/snehasis4321)
+
+

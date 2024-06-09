@@ -1,11 +1,11 @@
 {
-    "name": "pay_facture",
-    "short_name": "pay_facture",
+    "name": "email_google_auth_flutter_appwrite",
+    "short_name": "email_google_auth_flutter_appwrite",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "PayFacture is a mobile app designed for secure and efficient bill payments. Users sign up with document and facial verification, manage client info, pay bills, and handle credit by scanning deposit slips for automatic verification. Features include transaction history, notifications, and robust security measures.",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
