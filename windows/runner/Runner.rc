@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "pay_facture" "\0"
+            VALUE "FileDescription", "email_google_auth_flutter_appwrite" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "pay_facture" "\0"
+            VALUE "InternalName", "email_google_auth_flutter_appwrite" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "pay_facture.exe" "\0"
-            VALUE "ProductName", "pay_facture" "\0"
+            VALUE "OriginalFilename", "email_google_auth_flutter_appwrite.exe" "\0"
+            VALUE "ProductName", "email_google_auth_flutter_appwrite" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
