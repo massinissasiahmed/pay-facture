@@ -15,9 +15,9 @@ class _HomepageState extends State<Homepage> {
 
   @override
   void initState() {
-    getUser().then((value) {
+    getUser('').then((value) { // token init state
       setState(() {
-        _currentUser = value!;
+        _currentUser = value! as User;
         isLoading = false;
       });
     });
@@ -54,7 +54,7 @@ class _HomepageState extends State<Homepage> {
                   _currentUser.emailVerification == false
                       ? TextButton(
                           onPressed: () {
-                            sendVerificationMail().then((value) {
+                            sendVerificationMail('').then((value) {
                               if (value) {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
@@ -80,7 +80,7 @@ class _HomepageState extends State<Homepage> {
                       : const SizedBox(),
                   ElevatedButton(
                       onPressed: () {
-                        logoutUser();
+                        logoutUser('');
                         Navigator.pushReplacementNamed(context, "/login");
                       },
                       child: const Text("Logout"))
