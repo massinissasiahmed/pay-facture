@@ -3,14 +3,18 @@ CREATE DATABASE scan_app_db;
 
 -- Create users table
 CREATE TABLE users (
-    user_id SERIAL PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
+    password TEXT NOT NULL,
     phone_number VARCHAR(15),
-    password_hash TEXT NOT NULL,
+    email-verified BOOLEAN DEFAULT FALSE,
+    verification_token VARCHAR(255) ,
+    recovery_token VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     role VARCHAR(20) NOT NULL, -- 'client', 'admin'
     deleted BOOLEAN,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_connected_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -84,4 +88,6 @@ CREATE TABLE security_settings (
     data_encryption_enabled BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
 );
+

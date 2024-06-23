@@ -199,53 +199,6 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       height: 10,
                     ),
-                    SizedBox(
-                      height: 65,
-                      width: MediaQuery.of(context).size.width * .9,
-                      child: OutlinedButton(
-                          onPressed: () {
-                            continueWithGoogle().then((value) {
-                              if (value) {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: const Text(
-                                    "Google Login Successful",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  backgroundColor: Colors.green.shade400,
-                                ));
-                                Navigator.pushReplacementNamed(
-                                    context, "/home");
-                              } else {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: const Text(
-                                    "Google Login Failed",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  backgroundColor: Colors.red.shade400,
-                                ));
-                              }
-                            });
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                "images/google.png",
-                                height: 30,
-                                width: 30,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Text(
-                                "Continue with Google",
-                                style: TextStyle(fontSize: 17),
-                              )
-                            ],
-                          )),
-                    ),
                     const SizedBox(
                       height: 10,
                     ),

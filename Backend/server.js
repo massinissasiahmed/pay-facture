@@ -4,6 +4,7 @@ const { Client } = require('pg');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const { sendVerificationEmail, sendRecoveryEmail } = require('./mail');
 const app = express();
 dotenv.config();
 
@@ -81,23 +82,45 @@ app.get('/user', authenticate, async (req, res) => {
   }
 });
 
-// Send verification email (mock implementation)
+
+
+// Send verification email
 app.post('/verify', authenticate, async (req, res) => {
-  // Implement email verification logic here
-  res.json({ message: 'Verification email sent' });
+  const { email } = req.body;
+  try {
+    const user = await dbClient.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (user.rows.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const verificationToken = jwt.sign({ email: email }, process.env.JWT_SECRET, { expiresIn: '1d' });
+    await dbClient.query('UPDATE users SET verification_token = $1 WHERE email = $2', [verificationToken, email]);
+
+    await sendVerificationEmail(email, verificationToken);
+    res.json({ message: 'Verification email sent' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
-// Send recovery email (mock implementation)
+
+// Send recovery email
 app.post('/recover', async (req, res) => {
   const { email } = req.body;
-  // Implement password recovery logic here
-  res.json({ message: 'Recovery email sent' });
-});
+  try {
+    const user = await dbClient.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (user.rows.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
 
-// Continue with Google (mock implementation)
-app.post('/oauth/google', async (req, res) => {
-  // Implement OAuth2 logic here
-  res.json({ message: 'Google OAuth2 not implemented' });
+    const recoveryToken = jwt.sign({ email: email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    await dbClient.query('UPDATE users SET recovery_token = $1 WHERE email = $2', [recoveryToken, email]);
+
+    await sendRecoveryEmail(email, recoveryToken);
+    res.json({ message: 'Recovery email sent' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 const PORT = process.env.PORT || 3000;
@@ -105,3 +128,16 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+// Handle email verification logic
+app.post('/verify-email', async (req, res) => {
+  const { email, verificationToken } = req.body;
+  try {
+    // Verify the token
+    const decodedToken = jwt.verify(verificationToken, process.env.JWT_SECRET);
+    // Update email verification status
+    await dbClient.query('UPDATE users SET email_verified = TRUE WHERE email = $1', [email]);
+    res.json({ message: 'Email verified successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
