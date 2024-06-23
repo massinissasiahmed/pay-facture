@@ -88,4 +88,6 @@ CREATE TABLE security_settings (
     data_encryption_enabled BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
 );
+
