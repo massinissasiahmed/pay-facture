@@ -8,7 +8,7 @@ CREATE TABLE users (
     email VARCHAR(100) NOT NULL UNIQUE,
     phone_number VARCHAR(15),
     password_hash TEXT NOT NULL,
-    role VARCHAR(20) NOT NULL, -- 'client', 'admin'
+    role VARCHAR(20) NOT NULL DEFAULT 'client', -- 'client', 'admin'
     deleted BOOLEAN,
     email_verified BOOLEAN DEFAULT FALSE,
     verification_token VARCHAR(255) ,
