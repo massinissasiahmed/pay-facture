@@ -10,7 +10,7 @@ CREATE TABLE users (
     password_hash TEXT NOT NULL,
     role VARCHAR(20) NOT NULL, -- 'client', 'admin'
     deleted BOOLEAN,
-    email-verified BOOLEAN DEFAULT FALSE,
+    email_verified BOOLEAN DEFAULT FALSE,
     verification_token VARCHAR(255) ,
     recovery_token VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
