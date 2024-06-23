@@ -26,9 +26,9 @@ Future<String> createUser(String name, String email, String password) async {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-        'name': name,
+        'username': name,
         'email': email,
-        'password': password,
+        'password-hash': password,
       }),
     );
 
@@ -52,7 +52,7 @@ Future<String> loginUser(String email, String password) async {
       },
       body: jsonEncode(<String, String>{
         'email': email,
-        'password': password,
+        'password-hash': password,
       }),
     );
 

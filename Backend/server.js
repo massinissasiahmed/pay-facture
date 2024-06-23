@@ -17,12 +17,12 @@ app.use(express.json());
 
 // Register a new user
 app.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { username, email, password } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const result = await dbClient.query(
-      'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email',
-      [name, email, hashedPassword]
+      'INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING user_id, username, email',
+      [username, email, hashedPassword]
     );
     res.status(201).json(result.rows[0]);
   } catch (error) {
@@ -39,11 +39,11 @@ app.post('/login', async (req, res) => {
       return res.status(400).json({ error: 'Invalid email or password' });
     }
     const user = result.rows[0];
-    const match = await bcrypt.compare(password, user.password);
+    const match = await bcrypt.compare(password, user.password_hash);
     if (!match) {
       return res.status(400).json({ error: 'Invalid email or password' });
     }
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user.uder_id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -75,7 +75,7 @@ app.post('/logout', authenticate, (req, res) => {
 // Get details of the logged-in user
 app.get('/user', authenticate, async (req, res) => {
   try {
-    const result = await dbClient.query('SELECT id, name, email FROM users WHERE id = $1', [req.userId]);
+    const result = await dbClient.query('SELECT user_id, username, email FROM users WHERE user_id = $1', [req.userId]);
     res.json(result.rows[0]);
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -8,9 +8,9 @@ CREATE TABLE users (
     email VARCHAR(100) NOT NULL UNIQUE,
     phone_number VARCHAR(15),
     password_hash TEXT NOT NULL,
-    role VARCHAR(20) NOT NULL, -- 'client', 'admin'
+    role VARCHAR(20) NOT NULL DEFAULT 'client', -- 'client', 'admin'
     deleted BOOLEAN,
-    email-verified BOOLEAN DEFAULT FALSE,
+    email_verified BOOLEAN DEFAULT FALSE,
     verification_token VARCHAR(255) ,
     recovery_token VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
