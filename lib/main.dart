@@ -4,6 +4,7 @@ import 'package:email_google_auth_flutter_appwrite/views/login.dart';
 import 'package:email_google_auth_flutter_appwrite/views/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'camera_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const Homepage(),
         "/signup": (context) => const SignUpPage(),
         "/login": (context) => const LoginPage(),
+        "/camera": (context) => const CameraPage(),
       },
     );
   }
