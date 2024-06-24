@@ -39,6 +39,20 @@ dependencies:
   appwrite: ^11.0.1
   http: ^1.0.0
   flutter_secure_storage: ^9.2.2
+  flutter_ocr_sdk: ^1.1.4
+
+  # The following adds the Cupertino Icons font to your application.
+  image_picker: ^1.0.0
+  shared_preferences: ^2.1.1
+  camera: 
+    git:
+      url: https://github.com/yushulx/flutter_camera.git
+  camera_windows: 
+    git:
+      url: https://github.com/yushulx/flutter_camera_windows.git
+  share_plus: ^7.0.2
+  url_launcher: ^6.1.11
+  flutter_exif_rotation: ^0.5.1
 
 dev_dependencies:
   flutter_test:
